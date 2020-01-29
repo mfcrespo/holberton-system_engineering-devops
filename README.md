@@ -1,1 +1,1 @@
-#holberton-system_engineering-devops
+Learning about Shell, basics and more
