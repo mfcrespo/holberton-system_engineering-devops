@@ -1,3 +1,2 @@
 #!/bin/bash
-sudo chown -R betty:holberton
-
+chown -R betty:holberton
