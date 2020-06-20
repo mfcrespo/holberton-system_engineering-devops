@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Script is displaying "Holberton School" 10 times, but for the 9th iteration
+STRING="Holberton School"
+count=1
+while [ $count -le 10 ];
+do
+	echo "$STRING"
+	if [ $count -eq 9 ]
+	then
+	echo $"Hi"
+	fi
+	(( count++))
+done
