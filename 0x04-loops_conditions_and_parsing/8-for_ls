@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# This script prints out files in the current directory without numbers at the beginning
+for i in *
+do
+	echo "$i" | cut -d"-" -f2
+done
