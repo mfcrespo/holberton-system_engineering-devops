@@ -2,7 +2,7 @@
 file_line { 'use the private key':
   ensure => 'present',
   path   => '/etc/ssh/ssh_config',
-  line   =>  'IdentityFile /home/vagrant/.ssh/holberton',
+  line   =>  'IdentityFile ~/.ssh/holberton',
 }
 
 file_line { 'without password':
