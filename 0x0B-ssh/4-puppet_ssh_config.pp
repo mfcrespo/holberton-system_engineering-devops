@@ -8,5 +8,6 @@ file_line { 'use the private key':
 file_line { 'without password':
   ensure => 'present',
   path   => '/etc/ssh/ssh_config',
-  line   =>  'PasswordAuthentication no',
+  line   => 'PasswordAuthentication no',
+  match  => 'PasswordAuthentication'
 }
