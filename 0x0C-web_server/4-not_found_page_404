@@ -9,6 +9,6 @@ sudo sed -i "$REDIRECT" /etc/nginx/sites-available/default
 sudo touch /usr/share/nginx/html/404error.html
 sudo chmod '0777' /usr/share/nginx/html/404error.html
 echo -e "Ceci n'est pas une page\n" > /usr/share/nginx/html/404error.html
-error_page="/listen 80 default_server/a error_page 404 /404error.html"
+error_page="/listen 80 default_server/a error_page 404 /404error.html;"
 sudo sed -i "$error_page" /etc/nginx/sites-available/default
 sudo service nginx restart
