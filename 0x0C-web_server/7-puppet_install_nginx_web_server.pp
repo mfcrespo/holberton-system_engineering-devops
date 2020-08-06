@@ -17,6 +17,7 @@ service { 'nginx':
 
 # echo "Holberton School" > /var/www/html/index.html
 file { '/var/www/html/index.html':
+  ensure  => present,
   content => 'Holberton School',
   path    => '/var/www/html/index.html',
 }
