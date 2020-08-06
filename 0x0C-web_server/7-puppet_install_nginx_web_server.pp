@@ -25,5 +25,5 @@ file_line { 'redirect':
 # sudo service nginx restart
 service { 'restart_server':
   ensure  => running,
-  restart
+  hasrestart => true
 }
