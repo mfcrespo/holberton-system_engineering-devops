@@ -23,7 +23,7 @@ file_line { 'redirect':
 }
 
 # sudo service nginx restart
-service { 'restart_server':
+service { 'nginx':
   ensure     => running,
   require    => Package['nginx'],
   hasrestart => true
