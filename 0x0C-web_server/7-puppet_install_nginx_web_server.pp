@@ -6,15 +6,8 @@ package { 'nginx':
   name   => 'nginx',
 }
 
-# sudo service nginx restart
-service { 'nginx':
-  ensure    => running,
-  require   => Package['nginx'],
-  subscribe => File_line['redirect'],
-}
-
 # echo "Holberton School" > /var/www/html/index.html
-file { 'path_to_file':
+file { '/var/www/html/index.html':
   content => 'Holberton School',
   path    => '/var/www/html/index.html',
 }
@@ -22,13 +15,18 @@ file { 'path_to_file':
 # REDIRECT="/listen 80 default_server/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;"
 # sudo sed -i "$REDIRECT" /etc/nginx/sites-available/default
 file_line { 'redirect':
-  ensure   => present,
-  path     => '/etc/nginx/sites-available/default',
-  after    => 'listen 80 default_server;',
-  line     => ' rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;',
-  multiple => true,
+  ensure => present,
+  path   => '/etc/nginx/sites-available/default',
+  after  => 'listen 80 default_server;',
+  line   => 'rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;',
 }
 
+# sudo service nginx restart
+service { 'nginx':
+  ensure    => running,
+  require   => Package['nginx'],
+  subscribe => File_line['redirect'],
+}
 
 
 
