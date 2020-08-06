@@ -8,9 +8,11 @@ package { 'nginx':
 
 # sudo service nginx restart
 service { 'nginx':
-  ensure    => running,
-  require   => Package['nginx'],
-  subscribe => File_line['redirect'],
+  ensure     => running,
+  require    => Package['nginx'],
+  subscribe  => File_line['redirect'],
+  enable     => true,
+  hasrestart => true,
 }
 
 # echo "Holberton School" > /var/www/html/index.html
