@@ -6,6 +6,13 @@ package { 'nginx':
   name   => 'nginx',
 }
 
+# sudo service nginx restart
+service { 'nginx':
+  ensure    => running,
+  require   => Package['nginx'],
+  subscribe => File_line['redirect'],
+}
+
 # echo "Holberton School" > /var/www/html/index.html
 file { 'path_to_file':
   content => 'Holberton School',
@@ -22,11 +29,6 @@ file_line { 'redirect':
   multiple => true,
 }
 
-# sudo service nginx restart
-service { 'nginx':
-  ensure     => running,
-  require    => Package['nginx'],
-  subscribe  => File_line["redirect"],
-}
+
 
 
