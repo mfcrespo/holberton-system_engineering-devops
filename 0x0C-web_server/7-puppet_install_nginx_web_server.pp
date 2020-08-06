@@ -17,7 +17,7 @@ file { 'path_to_file':
 file_line { 'redirect':
   ensure   => present,
   path     => '/etc/nginx/sites-available/default',
-  after    => 'server_name _;',
+  after    => 'listen 80 default_server',
   line     => 'rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;',
   multiple => true
 }
