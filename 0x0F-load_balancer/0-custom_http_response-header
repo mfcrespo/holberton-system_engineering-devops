@@ -1,18 +1,18 @@
-!/usr/bin/env bash
-#Configure your Nginx server so that its HTTP response
-#contains a custom header (on web-01 and web-02) 
-sudo apt-get update
+#!/usr/bin/env bash
+# Installs nginx web server on ubuntu 16.04
+sudo apt-get -y update
 sudo apt-get -y install nginx
-#firewall
+# Adjust the Firewall port 80
 sudo ufw allow 'Nginx HTTP'
-#Add line in block of file
-sudo sed -i "/listen 80 default_server/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-available/default
-# Create error 404 file
+# Modify Index file  
+echo "Holberton School" > /var/www/html/index.nginx-debian.html
+# Redirection
+sudo sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+# Modifies 404 html
 sudo echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html
-# Add error 404 to Nginx configuration default
-error_page="/listen 80 default_server/a error_page 404 /404error.html;"
-sudo sed -i "$error_page" /etc/nginx/sites-available/default
-# Add custom HTTP header
-sudo sed -i "/listen 80 default_server/a add_header X-Served-By \"$HOSTNAME\";" /etc/nginx/sites-available/default
-# Restart nginx to load changes
+# Configures 404 error page
+sudo sed -i '/listen 80 default_server/a error_page 404 /custom_404.html;' /etc/nginx/sites-available/default
+# Set custom response header
+sudo sed -i "/listen 80 default_server/a add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default
+# Start nginx
 sudo service nginx restart
