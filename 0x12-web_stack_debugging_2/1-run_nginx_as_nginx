@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Script that configures a web server
+pkill apache2
+sudo chown nginx:nginx /etc/nginx/nginx.conf
+sudo chmod 444 /etc/nginx/nginx.conf
+sudo sed -i "s/listen 80/listen 8080/" /etc/nginx/sites-enabled/default
+sudo sed -i "s/\[::\]:80/\[::\]:8080/" /etc/nginx/sites-enabled/default
+sudo -u nginx service nginx start
