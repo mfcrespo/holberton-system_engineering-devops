@@ -36,21 +36,19 @@ defaults
         errorfile 500 /etc/haproxy/errors/500.http
         errorfile 502 /etc/haproxy/errors/502.http
         errorfile 503 /etc/haproxy/errors/503.http
-        errorfile 504 /etc/haproxy/errors/504.http
+       	errorfile 504 /etc/haproxy/errors/504.http
 
 frontend http
-  bind *:80
-  mode http
-  default_backend http_back
+        bind *:80
+        reqadd X-Forwarded-Proto:\ http
+        default_backend http_back
 
 frontend www-https
-   bind *:443 ssl crt /etc/haproxy/certs/mariacrespo.tech.pem
-   reqadd X-Forwarded-Proto:\ https
-   acl letsencrypt-acl path_beg /.well-known/acme-challenge/
-   use_backend letsencrypt-backend if letsencrypt-acl
-   default_backend www-backend
+        bind *:443 ssl crt /etc/haproxy/certs/www.mariacrespo.tech.pem
+        reqadd X-Forwarded-Proto:\ https
+        default_backend http_back
 
 backend http_back
-   balance roundrobin
-   server 1491-web-01 35.243.243.216:80 check
-   server 1491-web-02 54.146.219.183:80 check
+        balance roundrobin
+        server 1491-web-01 35.243.243.216:80 check
+        server 1491-web-02 54.146.219.183:80 check
