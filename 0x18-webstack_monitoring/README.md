@@ -9,7 +9,7 @@ Web stack monitoring can be broken down into 2 categories:
 Application monitoring: getting data about your running software and making sure it is behaving as expected
 Server monitoring: getting data about your virtual or physical server and making sure they are not overloaded (could be CPU, memory, disk or network overload)
 
-##Tasks
+##Tasks of project
 
 0. Sign up for Datadog and install datadog-agent
 For this task head to https://www.datadoghq.com/ and sign up for a free Datadog account. When signing up, youll have the option of selecting statistics from your current stack that Datadog can monitor for you. Once you have an account set up, follow the instructions given on the website to install the Datadog agent.
